@@ -1,0 +1,8 @@
+button:hover {
+    cursor: pointer;
+}
+
+@import 'nav';
+@import 'posts.show';
+@import 'posts.index';
+@import 'paginate'

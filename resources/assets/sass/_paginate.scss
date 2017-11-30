@@ -1,0 +1,11 @@
+.pagination {
+    li {
+        border: 1px solid #E9ECEF;
+        border-left: none;
+        padding: 5px 15px;
+        
+        &:nth-of-type(1) {
+            border-left: 1px solid #E9ECEF;
+        }
+    }
+}

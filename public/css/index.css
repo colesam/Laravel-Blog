@@ -1,0 +1,33 @@
+button:hover {
+  cursor: pointer; }
+
+.dropdown-menu {
+  right: 0;
+  left: auto; }
+
+.navbar {
+  margin-bottom: 50px; }
+
+dt {
+  white-space: nowrap; }
+
+.card {
+  padding: 10px; }
+
+dl.row.end {
+  margin-bottom: 0; }
+
+.large-col {
+  width: 20vw; }
+
+.btn-btmargin {
+  margin-bottom: 5px; }
+
+.pagination li {
+  border: 1px solid #E9ECEF;
+  border-left: none;
+  padding: 5px 15px; }
+  .pagination li:nth-of-type(1) {
+    border-left: 1px solid #E9ECEF; }
+
+/*# sourceMappingURL=index.css.map */
