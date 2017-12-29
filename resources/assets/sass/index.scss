@@ -2,6 +2,10 @@ button:hover {
     cursor: pointer;
 }
 
+.list-item {
+    margin-bottom: 30px;
+}
+
 @import 'nav';
 @import 'posts.show';
 @import 'posts.index';

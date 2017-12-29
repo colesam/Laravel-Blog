@@ -7,7 +7,10 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto" id="left-nav">
             <li class="nav-item {{ Request::is('/') ? 'active':'' }}">
-                <a class="nav-link" href="/">Blog <span class="sr-only">{{ Request::is('/') ? '(current)':'' }}</span></a>
+                <a class="nav-link" href="/">Home <span class="sr-only">{{ Request::is('/') ? '(current)':'' }}</span></a>
+            </li>
+            <li class="nav-item {{ Request::is('blog') ? 'active':'' }}">
+                <a class="nav-link" href="/blog">Blog <span class="sr-only">{{ Request::is('blog') ? '(current)':'' }}</span></a>
             </li>
             <li class="nav-item {{ Request::is('about') ? 'active':'' }}">
                 <a class="nav-link" href="/about">About <span class="sr-only">{{ Request::is('/about') ? '(current)':'' }}</span></a>
@@ -22,9 +25,10 @@
                     My Account
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="{{ route('posts.index') }}">Posts</a>
                     <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Logout</a>
                 </div>
             </li>
         </ul>
