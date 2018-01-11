@@ -9,6 +9,12 @@ use Session;
 
 class PostController extends Controller
 {
+    //  ONLY AUTHENTICATED USERS CAN ACCESS THESE PAGES
+    public function __construct() 
+    {
+        $this->middleware('auth');
+    }
+    
     //  DISPLAY THE LISTING OF ALL BLOG POSTS FROM ADMIN PERSPECTIVE
     public function index()
     {

@@ -20,17 +20,25 @@
             </li>
         </ul>
         <ul class="navbar-nav ml-auto" id="right-nav">
+            @if(Auth::check())
+            
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    My Account
+                    Hello {{ Auth::user()->name }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="{{ route('posts.index') }}">Posts</a>
                     <a class="dropdown-item" href="#">Another action</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Logout</a>
+                    <a class="dropdown-item" href="{{ route('auth.logout') }}">Logout</a>
                 </div>
             </li>
+            
+            @else
+            
+            <a href="{{ route('auth.form') }}" class="nav-link">Login</a>
+            
+            @endif
         </ul>
     </div>
 </nav>
