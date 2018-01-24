@@ -12,20 +12,25 @@
 */
 
 //  Authentication Routes
-Route::get('auth/login',        ['as' => 'auth.form',           'uses' => 'Auth\AuthController@getLogin']);
-Route::post('auth/login',       ['as' => 'auth.login',          'uses' => 'Auth\AuthController@postLogin']);
-Route::get('auth/logout',       ['as' => 'auth.logout',         'uses' => 'Auth\AuthController@getLogout']);
+Route::get('auth/login',                ['as' => 'auth.form',           'uses' => 'Auth\AuthController@getLogin']);
+Route::post('auth/login',               ['as' => 'auth.login',          'uses' => 'Auth\AuthController@postLogin']);
+Route::get('auth/logout',               ['as' => 'auth.logout',         'uses' => 'Auth\AuthController@getLogout']);
 
 //  Registration Routes
-Route::get('auth/register',     ['as' => 'register.form',       'uses' => 'Auth\AuthController@getRegister']);
-Route::post('auth/register',    ['as' => 'register.request',    'uses' => 'Auth\AuthController@postRegister']);
+Route::get('auth/register',             ['as' => 'register.form',       'uses' => 'Auth\AuthController@getRegister']);
+Route::post('auth/register',            ['as' => 'register.request',    'uses' => 'Auth\AuthController@postRegister']);
+
+//  Password Reset Routes
+Route::get('password/reset/{token?}',   ['as' => 'password',            'uses' => 'Auth\PasswordController@showResetForm']);
+Route::post('password/email',           ['as' => 'password.email',      'uses' => 'Auth\PasswordController@sendResetLinkEmail']);
+Route::post('password/reset',           ['as' => 'password.reset',      'uses' => 'Auth\PasswordController@reset']);
 
 //  Other Routes
-Route::get('blog/{slug}',       ['as' => 'blog.single',         'uses' => 'BlogController@getSingle'])->where('slug', '[\w\d\-\_]+');
-Route::get('blog',              ['as' => 'blog.index',          'uses' => 'BlogController@getIndex']);
-Route::get('contact',           ['as' => 'pages.contact',       'uses' => 'PagesController@getContact']);
-Route::get('about',             ['as' => 'pages.about',         'uses' => 'PagesController@getAbout']);
-Route::get('/',                 ['as' => 'pages.index',         'uses' => 'PagesController@getIndex']);
+Route::get('blog/{slug}',               ['as' => 'blog.single',         'uses' => 'BlogController@getSingle'])->where('slug', '[\w\d\-\_]+');
+Route::get('blog',                      ['as' => 'blog.index',          'uses' => 'BlogController@getIndex']);
+Route::get('contact',                   ['as' => 'pages.contact',       'uses' => 'PagesController@getContact']);
+Route::get('about',                     ['as' => 'pages.about',         'uses' => 'PagesController@getAbout']);
+Route::get('/',                         ['as' => 'pages.index',         'uses' => 'PagesController@getIndex']);
 
 //  Resources
 Route::resource('posts', 'PostController');
