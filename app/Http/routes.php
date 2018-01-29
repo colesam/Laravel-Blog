@@ -33,5 +33,5 @@ Route::get('about',                     ['as' => 'pages.about',         'uses' =
 Route::get('/',                         ['as' => 'pages.index',         'uses' => 'PagesController@getIndex']);
 
 //  Resources
-Route::resource('posts', 'PostController');
-
+Route::resource('posts',        'PostController');
+Route::resource('categories',   'CategoryController', ['except' => ['create']]);

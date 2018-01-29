@@ -36,8 +36,8 @@
                         </td>
                         <td>{{ date('M j, Y g:i', strtotime($post->created_at)) }}</td>
                         <td>
-                            <a href="{{ route('posts.show', $post->id) }}" class="btn btn-success btn-sm btn-btmargin">View</a>
-                            <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-info btn-sm btn-btmargin">Edit</a>
+                            <a href="{{ route('posts.show', $post->id) }}" class="btn btn-success btn-sm btn-btmargin form-control">View</a>
+                            <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-info btn-sm btn-btmargin form-control">Edit</a>
                         </td>
                     </tr>
                 
