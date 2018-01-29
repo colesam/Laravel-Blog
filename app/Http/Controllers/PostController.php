@@ -9,13 +9,20 @@ use Session;
 
 class PostController extends Controller
 {
-    //  ONLY AUTHENTICATED USERS CAN ACCESS THESE PAGES
+    /**
+     * Set up middleware so that only authenticated users can access the posts.
+     *
+     */
     public function __construct() 
     {
         $this->middleware('auth');
     }
     
-    //  DISPLAY THE LISTING OF ALL BLOG POSTS FROM ADMIN PERSPECTIVE
+    /**
+     * Display a listing of the blog posts with ability to edit and delete.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         //  get all the blog posts from the database with pagination
@@ -25,13 +32,22 @@ class PostController extends Controller
         return view('posts.index')->withPosts($posts);
     }
 
-    //  DISPLAY THE FORM TO CREATE A NEW POST
+    /**
+     * Display a form to create a new post.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         return view('posts.create');
     }
 
-    //  STORE A NEWLY CREATED POST (NOT FOR UPDATES)
+    /**
+     * Store a newly created post in the database.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         //  validate the data (includes CSRF protection)
@@ -53,7 +69,12 @@ class PostController extends Controller
         return redirect()->route('posts.show', $post->id);
     }
 
-    //  SHOW A SINGLE BLOG POST FROM ADMIN PERSPECTIVE
+    /**
+     * Show a single blog post.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
         //  get the post from the Post model using the post id
@@ -63,7 +84,12 @@ class PostController extends Controller
         return view('posts.show')->with('post', $post);
     }
 
-    //  DISPLAY THE FORM FOR EDITING A POST
+    /**
+     * Show the form for editing a specific blog post.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function edit($id)
     {
         //  find the post in the database
@@ -73,7 +99,13 @@ class PostController extends Controller
         return view('posts.edit')->withPost($post);
     }
 
-    //  UPDATE AN EDITED POST
+    /**
+     * Update the specified blog post in the database.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     function update(Request $request, $id)
     {
         //  grab the post to update
@@ -104,7 +136,12 @@ class PostController extends Controller
         return redirect()->route('posts.show', $post->id);
     }
 
-    //  DELETE A POST
+    /**
+     * Remove the specified blog post from the database.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
         //  find the post
