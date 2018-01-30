@@ -23,6 +23,9 @@
                     
                     <dt class="col-4">Updated:</dt>
                     <dd class="col-8">{{ date('M j, Y g:i', strtotime($post->updated_at)) }}</dd>
+                    
+                    <dt class="col-4">Category:</dt>
+                    <dd class="col-8">{{ $post->category->category }}</dd>
                 </dl>
                 
                 <hr>

@@ -9,6 +9,10 @@
         <h1>{{ $post->title }}</h1>
         <hr>
         <p>{{ $post->body }}</p>
+        <br>
+        
+        <p><strong>Category:</strong> {{ $post->category->category }}</p>
+        <p><strong>Posted:</strong> {{ $post->created_at }}</p>
     </div>
 </div>
 

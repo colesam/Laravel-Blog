@@ -30,7 +30,18 @@
                 <textarea class="form-control" name="body" rows=10 required></textarea>
             </div>
             
-            <button type="submit" name='submit' class="btn btn-primary">Create Post</button>
+            <div class="form-group">
+                <select class="custom-select" name="category_id">
+                    <option disabled selected value> -- Select a Category -- </option>
+                    @foreach($categories as $category)
+                    
+                        <option value="{{ $category->id }}">{{ $category->category }}</option>
+                    
+                    @endforeach
+                </select>
+            </div>
+            
+            <button type="submit" name='submit' class="btn btn-success form-control">Create Post</button>
             {{ Form::token() }}
         </form>
     </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Post;
+use App\Category;
 use Session;
 
 class PostController extends Controller
@@ -34,12 +35,16 @@ class PostController extends Controller
 
     /**
      * Display a form to create a new post.
+     * Necessary to retrieve categories to populate category dropdown field.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('posts.create');
+        //  grab all categories that are currently in the DB
+        $categories = Category::orderBy('id')->get();
+        
+        return view('posts.create')->withCategories($categories);
     }
 
     /**
@@ -52,16 +57,18 @@ class PostController extends Controller
     {
         //  validate the data (includes CSRF protection)
         $this->validate($request, [
-            'title' => 'required|max:255',
-            'body'  => 'required',
-            'slug'  => 'required|alpha_dash|min:5|max:255'
+            'title'         => 'required|max:255',
+            'body'          => 'required',
+            'slug'          => "required|min:5|max:255|alpha_dash|unique:posts,slug",
+            'category_id'   => 'integer'
         ]);
         
         //  store in the database
         $post = new Post();
-        $post->title = $request->title;
-        $post->body  = $request->body;
-        $post->slug  = $request->slug;
+        $post->title        = $request->title;
+        $post->body         = $request->body;
+        $post->slug         = $request->slug;
+        $post->category_id  = $request->category_id;
         $post->save();
         
         //  redirect with flash data to posts.show
@@ -92,11 +99,12 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //  find the post in the database
-        $post = Post::find($id);
+        //  find the post and categories in the database
+        $post       = Post::find($id);
+        $categories = Category::allBut($post->category_id);
         
         //  return view for editing a post
-        return view('posts.edit')->withPost($post);
+        return view('posts.edit')->withPost($post)->withCategories($categories);
     }
 
     /**
@@ -111,24 +119,30 @@ class PostController extends Controller
         //  grab the post to update
         $post = Post::find($id);
         
-        //  validate the data (slug done separately)
-        $this->validate($request, [
-            'title'=> 'required|max:255',
-            'body' => 'required',
-        ]);
-        
-        //  if the slug was changed then validate it
-        if($request->input(slug) != $post->slug) 
+        //  validate the data, if the slug was not changed don't validate for uniqueness
+        if($request->slug != $post->slug) 
         {
             $this->validate($request, [
-                'slug' => "required|min:5|max:255|alpha_dash|unique:posts,slug"    
+                'title'         => 'required|max:255',
+                'body'          => 'required',
+                'category_id'   => 'integer'
+            ]);
+        }
+        else
+        {
+            $this->validate($request, [
+                'title'         => 'required|max:255',
+                'body'          => 'required',
+                'slug'          => "required|min:5|max:255|alpha_dash|unique:posts,slug",
+                'category_id'   => 'integer'
             ]);
         }
         
         //  save the data to the database
-        $post->title = $request->title;
-        $post->body = $request->body;
-        
+        $post->title        = $request->title;
+        $post->body         = $request->body;
+        $post->slug         = $request->slug;
+        $post->category_id  = $request->category_id;
         $post->save();
         
         //  redirect with flash data to posts.show

@@ -39,6 +39,26 @@
                         <dd class="col-8">{{ date('M j, Y g:i', strtotime($post->updated_at)) }}</dd>
                     </dl>
                     
+                    <div class="form-group">
+                        <select class="custom-select" name="category_id">
+                            @if($post->category_id !== NULL)
+                                
+                                <option selected value="{{ $post->category->id }}">{{ $post->category->category }}</option>
+                                
+                            @else
+                            
+                                <option disabled selected value> -- Select a Category -- </option>
+                            
+                            @endif
+                            
+                            @foreach($categories as $category)
+                            
+                                <option value="{{ $category->id }}">{{ $category->category }}</option>
+                            
+                            @endforeach
+                        </select>
+                    </div>
+                    
                     <hr>
                     
                     <div class="row">
