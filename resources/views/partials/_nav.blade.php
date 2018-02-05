@@ -29,6 +29,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="{{ route('posts.index') }}">Posts</a>
                     <a class="dropdown-item" href="{{ route('categories.index') }}">Categories</a>
+                    <a class="dropdown-item" href="{{ route('tags.index') }}">Tags</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('auth.logout') }}">Logout</a>
                 </div>

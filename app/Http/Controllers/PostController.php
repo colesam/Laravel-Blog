@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Post;
 use App\Category;
+use App\Tag;
 use Session;
 
 class PostController extends Controller
@@ -41,10 +42,11 @@ class PostController extends Controller
      */
     public function create()
     {
-        //  grab all categories that are currently in the DB
+        //  grab all categories and tags that are currently in the DB
         $categories = Category::orderBy('id')->get();
+        $tags       = Tag::all();
         
-        return view('posts.create')->withCategories($categories);
+        return view('posts.create')->withCategories($categories)->withTags($tags);
     }
 
     /**
@@ -71,8 +73,12 @@ class PostController extends Controller
         $post->category_id  = $request->category_id;
         $post->save();
         
+        //  update post_tag relationship
+        $post->tags()->sync($request->tags, false);
+        
         //  redirect with flash data to posts.show
         Session::flash('success', 'The blog post was created successfully!');
+        
         return redirect()->route('posts.show', $post->id);
     }
 
@@ -101,10 +107,11 @@ class PostController extends Controller
     {
         //  find the post and categories in the database
         $post       = Post::find($id);
-        $categories = Category::allBut($post->category_id);
+        $categories = Category::orderBy('id')->where('id', '<>', $id)->get();
+        $tags       = Tag::all();
         
         //  return view for editing a post
-        return view('posts.edit')->withPost($post)->withCategories($categories);
+        return view('posts.edit')->withPost($post)->withCategories($categories)->withTags($tags);
     }
 
     /**
@@ -119,7 +126,7 @@ class PostController extends Controller
         //  grab the post to update
         $post = Post::find($id);
         
-        //  validate the data, if the slug was not changed don't validate for uniqueness
+        //  validate the data, if the slug was not changed don't validate it
         if($request->slug != $post->slug) 
         {
             $this->validate($request, [
@@ -145,6 +152,9 @@ class PostController extends Controller
         $post->category_id  = $request->category_id;
         $post->save();
         
+        //  update post_tag relationship
+        $post->tags()->sync($request->tags, false);
+        
         //  redirect with flash data to posts.show
         Session::flash('success', 'The blog post was updated successfully!');
         return redirect()->route('posts.show', $post->id);
@@ -163,6 +173,9 @@ class PostController extends Controller
         
         //  delete the post
         $post->delete();
+        
+        //  update post_tag relationship
+        $post->tags()->sync();
         
         //  redirect with flash data to posts.index
         Session::flash('success', 'The blog post was deleted successfully!');

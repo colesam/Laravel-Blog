@@ -5,6 +5,7 @@
 @section('stylesheets')
 
     <link href="{{ secure_asset('css/parsley.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/select2.min.css') }}" rel="stylesheet">
 
 @endsection
 
@@ -21,7 +22,21 @@
                 <input type="text" class="form-control" name="slug" value="{{ $post->slug }}" minlength="5" maxlength="255" required/>
             </div>
             <hr>
-            <textarea class="form-control" name="body" rows="10" required>{{ $post->body }}</textarea>
+            
+            <div class="form-group">
+                <textarea class="form-control" name="body" rows="10" required>{{ $post->body }}</textarea>
+            </div>
+            
+            <div class="form-group">
+                <select class="form-control select2-multi" name="tags[]" multiple="multiple">
+                    @foreach($tags as $tag)
+                    
+                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                    
+                    @endforeach
+                </select>
+            </div>
+            
             {{ Form::token() }}
             {{ method_field('PUT') }}  <!-- generates hidden field that sets the form method to PUT because HTML5 doesn't support it -->
         </div>
@@ -82,5 +97,13 @@
 @section('scripts')
     
     <script src="{{ secure_asset('js/parsley.min.js') }}"></script>
+    <script src="{{ secure_asset('js/select2.min.js') }}"></script>
+    
+    <!-- script to make select2 form element function -->
+    <script>
+        $('.select2-multi').select2({
+            placeholder: "Select Tags"
+        });
+    </script>
     
 @stop

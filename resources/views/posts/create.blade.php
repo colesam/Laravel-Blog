@@ -5,6 +5,7 @@
 @section('stylesheets')
 
     <link href="{{ secure_asset('css/parsley.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/select2.min.css') }}" rel="stylesheet">
 
 @endsection
 
@@ -31,6 +32,16 @@
             </div>
             
             <div class="form-group">
+                <select class="form-control select2-multi" name="tags[]" multiple="multiple">
+                    @foreach($tags as $tag)
+                    
+                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                    
+                    @endforeach
+                </select>
+            </div>
+            
+            <div class="form-group">
                 <select class="custom-select" name="category_id">
                     <option disabled selected value> -- Select a Category -- </option>
                     @foreach($categories as $category)
@@ -52,5 +63,13 @@
 @section('scripts')
     
     <script src="{{ secure_asset('js/parsley.min.js') }}"></script>
+    <script src="{{ secure_asset('js/select2.min.js') }}"></script>
+    
+    <!-- script to make select2 form element function -->
+    <script>
+        $('.select2-multi').select2({
+            placeholder: "Select Tags"
+        });
+    </script>
     
 @stop
