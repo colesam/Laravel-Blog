@@ -108,7 +108,22 @@ class PostController extends Controller
         //  find the post and categories in the database
         $post       = Post::find($id);
         $categories = Category::orderBy('id')->where('id', '<>', $id)->get();
-        $tags       = Tag::all();
+        
+        //  get the tags and flag those belonging to the post
+        $tags       = Tag::orderBy('id')->get();
+        
+        foreach($tags as $tag)
+        {
+            $tag['belongsToPost'] = false;
+            
+            foreach($post->tags as $postTag)
+            {
+                if($postTag->id == $tag->id)
+                {
+                    $tag['belongsToPost'] = true;
+                }
+            }
+        }
         
         //  return view for editing a post
         return view('posts.edit')->withPost($post)->withCategories($categories)->withTags($tags);
@@ -132,6 +147,7 @@ class PostController extends Controller
             $this->validate($request, [
                 'title'         => 'required|max:255',
                 'body'          => 'required',
+                'slug'          => "required|min:5|max:255|alpha_dash|unique:posts,slug",
                 'category_id'   => 'integer'
             ]);
         }
@@ -140,7 +156,6 @@ class PostController extends Controller
             $this->validate($request, [
                 'title'         => 'required|max:255',
                 'body'          => 'required',
-                'slug'          => "required|min:5|max:255|alpha_dash|unique:posts,slug",
                 'category_id'   => 'integer'
             ]);
         }
@@ -153,7 +168,7 @@ class PostController extends Controller
         $post->save();
         
         //  update post_tag relationship
-        $post->tags()->sync($request->tags, false);
+        $post->tags()->sync($request->tags);
         
         //  redirect with flash data to posts.show
         Session::flash('success', 'The blog post was updated successfully!');

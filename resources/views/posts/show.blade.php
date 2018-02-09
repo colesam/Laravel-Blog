@@ -10,6 +10,15 @@
         <p><strong>URL: </strong><a href="{{ url('blog/' . $post->slug) }}">{{ url('') . "/blog/$post->slug" }}</a></p>
         <hr>
         <p class="lead">{{ $post->body }}</p>
+        
+        <div class="tags">
+            @foreach($post->tags as $tag)
+            
+                <span class="badge badge-secondary">{{ $tag->name }}</span>
+            
+            @endforeach
+        </div>
+
     </div>
     
     <div class="col-12 col-md-4">
