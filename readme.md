@@ -15,7 +15,7 @@ A blog content management system powered by Laravel.
   <li>Registered users may log in, or request an email be sent to reset password</li>
 </ul>
 
-<p>This repository also includes a few screenshots to give an idea of how the site works at the moment.</p>
+<p>This repository also includes a few screenshots to give an idea of how the site works.</p>
 
 <h3>Technologies Used</h3>
 <ul>
