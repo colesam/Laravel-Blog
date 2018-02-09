@@ -28,12 +28,13 @@ Route::post('password/reset',           ['as' => 'password.reset',      'uses' =
 //  Other Routes
 Route::get('blog/{slug}',               ['as' => 'blog.single',         'uses' => 'BlogController@getSingle'])->where('slug', '[\w\d\-\_]+');
 Route::get('blog',                      ['as' => 'blog.index',          'uses' => 'BlogController@getIndex']);
-Route::get('contact',                   ['as' => 'pages.contact',       'uses' => 'PagesController@getContact']);
-Route::get('about',                     ['as' => 'pages.about',         'uses' => 'PagesController@getAbout']);
 Route::get('/',                         ['as' => 'pages.index',         'uses' => 'PagesController@getIndex']);
 
 //  Resources
 Route::resource('posts',        'PostController');
+
+//  categories.edit had to be done separately for custom URL
 Route::resource('categories',   'CategoryController',   ['except' => ['create', 'show', 'edit']]);
 Route::get('categories/edit', ['as' => 'categories.edit', 'uses' => 'CategoryController@edit']);
+    
 Route::resource('tags',         'TagController',        ['except' => ['create']]);

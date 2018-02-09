@@ -12,32 +12,26 @@
             <li class="nav-item {{ Request::is('blog') ? 'active':'' }}">
                 <a class="nav-link" href="/blog">Blog <span class="sr-only">{{ Request::is('blog') ? '(current)':'' }}</span></a>
             </li>
-            <li class="nav-item {{ Request::is('about') ? 'active':'' }}">
-                <a class="nav-link" href="/about">About <span class="sr-only">{{ Request::is('/about') ? '(current)':'' }}</span></a>
-            </li>
-            <li class="nav-item {{ Request::is('contact') ? 'active':'' }}">
-                <a class="nav-link" href="/contact">Contact <span class="sr-only">{{ Request::is('/contact') ? '(current)':'' }}</span></a>
-            </li>
         </ul>
         <ul class="navbar-nav ml-auto" id="right-nav">
             @if(Auth::check())
             
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Hello {{ Auth::user()->name }}
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="{{ route('posts.index') }}">Posts</a>
-                    <a class="dropdown-item" href="{{ route('categories.index') }}">Categories</a>
-                    <a class="dropdown-item" href="{{ route('tags.index') }}">Tags</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ route('auth.logout') }}">Logout</a>
-                </div>
-            </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Hello {{ Auth::user()->name }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{{ route('posts.index') }}">Posts</a>
+                        <a class="dropdown-item" href="{{ route('categories.index') }}">Categories</a>
+                        <a class="dropdown-item" href="{{ route('tags.index') }}">Tags</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ route('auth.logout') }}">Logout</a>
+                    </div>
+                </li>
             
             @else
             
-            <a href="{{ route('auth.form') }}" class="nav-link">Login</a>
+                <a href="{{ route('auth.form') }}" class="nav-link">Login</a>
             
             @endif
         </ul>
