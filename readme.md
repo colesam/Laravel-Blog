@@ -9,8 +9,8 @@ A blog content management system powered by Laravel.
   <li>Guests may view the public sections of the site</li>
   <li>Authenticated users may create, edit, and delete blog posts</li>
   <li>Authenticated users may assign a category to a blog post</li>
-  <li>Authenticated users may manage the site-wide categories, including creating, editing, or deleting categories</li>
-  <li>Assign one to many tags to a blog post, create, edit, delete tags</li>
+  <li>Authenticated users may manage the site-wide categories, including creating, editing(coming soon), or deleting categories</li>
+  <li>Assign one to many tags to a blog post, create, edit(coming soon), delete tags(coming soon)</li>
   <li>Guests may sign up for an account</li>
   <li>Registered users may log in, or request an email be sent to reset password</li>
 </ul>
