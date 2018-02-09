@@ -12,7 +12,7 @@ class BlogController extends Controller
     public function getIndex()
     {
         //  retrieve all posts from the DB, limit 10 per page
-        $posts = Post::paginate(10);
+        $posts = Post::orderBy('id', 'desc')->paginate(10);
         
         //  return view
         return view('blog.index')->withPosts($posts);
