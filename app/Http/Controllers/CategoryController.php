@@ -56,6 +56,53 @@ class CategoryController extends Controller
         $categories = Category::orderBy('id')->get();
         return redirect()->route('categories.index')->withCategories($categories);
     }
+    
+    /**
+     * Show an index page with forms for editing all categories
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit()
+    {
+        $categories = Category::allWithCount();
+        
+        //  return view for editing a post
+        return view('categories.edit')->withCategories($categories);
+    }
+    
+    /**
+     * Update the name of the specified category.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    function update(Request $request, $id)
+    {
+        //  grab the post to update
+        $category = Category::find($id);
+        
+        //  validate the data, if the slug was not changed don't validate it
+        if($request->category != $category->category) 
+        {
+            $this->validate($request, [
+                'category' => "required|min:5|max:255|string|unique:categories,category"
+            ]);
+        }
+        
+        //  save the data to the database
+        $category->category = $request->category;
+        $category->save();
+        
+        //  redirect with flash data to posts.show
+        Session::flash('success', 'The category was updated successfully!');
+        
+        $categories = Category::allWithCount();
+        return redirect()->route('categories.edit')->withCategories($category);
+    }
+
+
 
     /**
      * Remove the specified resource from storage.

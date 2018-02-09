@@ -34,7 +34,7 @@
                     <dd class="col-8">{{ date('M j, Y g:i', strtotime($post->updated_at)) }}</dd>
                     
                     <dt class="col-4">Category:</dt>
-                    <dd class="col-8">{{ $post->category->category }}</dd>
+                    <dd class="col-8">{{ $post->category != null ? "$post->category->category" : "None" }}</dd>
                 </dl>
                 
                 <hr>

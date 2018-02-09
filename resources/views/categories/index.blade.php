@@ -43,7 +43,8 @@
                         <input class="form-control" type="text" name="category" maxlength="255" required>
                     </div>
                     
-                    <button type="submit" name='submit' class="btn btn-primary form-control">Create Category</button>
+                    <button type="submit" name='submit' class="btn btn-primary form-control btn-btmargin">Create Category</button>
+                    <a href="{{ route('categories.edit') }}" class="btn btn-info form-control">Edit Categories</a>
                     {{ Form::token() }}
                 </form>
             </div>

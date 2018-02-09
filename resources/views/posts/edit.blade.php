@@ -56,7 +56,7 @@
                     
                     <div class="form-group">
                         <select class="custom-select" name="category_id">
-                            @if($post->category_id !== NULL)
+                            @if($post->category_id != NULL)
                                 
                                 <option selected value="{{ $post->category->id }}">{{ $post->category->category }}</option>
                                 
@@ -68,7 +68,11 @@
                             
                             @foreach($categories as $category)
                             
-                                <option value="{{ $category->id }}">{{ $category->category }}</option>
+                                @if($category->id != $post->category_id)
+                                
+                                    <option value="{{ $category->id }}">{{ $category->category }}</option>
+                                
+                                @endif
                             
                             @endforeach
                         </select>

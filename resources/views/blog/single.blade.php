@@ -11,7 +11,7 @@
         <p>{{ $post->body }}</p>
         <br>
         
-        <p><strong>Category:</strong> {{ $post->category->category }}</p>
+        <p><strong>Category:</strong> {{ $post->category != null ? "$post->category->category" : "None" }}</p>
         <p><strong>Posted:</strong> {{ $post->created_at }}</p>
     </div>
 </div>

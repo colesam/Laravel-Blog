@@ -168,6 +168,12 @@ class PostController extends Controller
         $post->save();
         
         //  update post_tag relationship
+        if($request->tags == null)
+        {
+            //  if the edit removed all tags or had none
+            $request->tags = [];
+        }
+        
         $post->tags()->sync($request->tags);
         
         //  redirect with flash data to posts.show

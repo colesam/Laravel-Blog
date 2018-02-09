@@ -34,5 +34,6 @@ Route::get('/',                         ['as' => 'pages.index',         'uses' =
 
 //  Resources
 Route::resource('posts',        'PostController');
-Route::resource('categories',   'CategoryController',   ['except' => ['create', 'show', 'edit', 'update']]);
+Route::resource('categories',   'CategoryController',   ['except' => ['create', 'show', 'edit']]);
+Route::get('categories/edit', ['as' => 'categories.edit', 'uses' => 'CategoryController@edit']);
 Route::resource('tags',         'TagController',        ['except' => ['create']]);
