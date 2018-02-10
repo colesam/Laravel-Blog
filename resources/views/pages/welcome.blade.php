@@ -15,13 +15,13 @@
             </p>
             <div class="row">
                 <div class="col-12 col-sm-4">
-                    <button class="btn btn-primary form-control">Login</button>
+                    <a href="{{ route('auth.form') }}" class="btn btn-primary form-control">Login</a>
                 </div>
                 <div class="col-12 col-sm-4">
-                    <button class="btn btn-info form-control">Register</button>
+                    <a href="{{ route('register.form') }}" class="btn btn-info form-control">Register</a>
                 </div>
                 <div class="col-12 col-sm-4">
-                    <button class="btn btn-success form-control">View Blog Posts</button>
+                    <a href="{{ route('blog.index') }}" class="btn btn-success form-control">View Blog Posts</a>
                 </div>
             </div>        
         </div>
