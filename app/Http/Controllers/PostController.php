@@ -189,14 +189,14 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //  find the post
+        //  find the post and tags
         $post = Post::find($id);
+        
+        //  update post_tag relationship
+        $post->tags()->sync([]);
         
         //  delete the post
         $post->delete();
-        
-        //  update post_tag relationship
-        $post->tags()->sync();
         
         //  redirect with flash data to posts.index
         Session::flash('success', 'The blog post was deleted successfully!');
