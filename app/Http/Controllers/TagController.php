@@ -55,42 +55,6 @@ class TagController extends Controller
         $tags = Tag::orderBy('id')->get();
         return redirect()->route('tags.index')->withTags($tags);
     }
-    
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $tags = Tag::orderBy('id')->get();
-        
-        
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -100,6 +64,19 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //  retrieve the tag from the DB
+        $tag = Tag::find($id);
+        
+        //  remove relationships from the post_tag table
+        $tag->posts()->sync([]);
+        
+        //  delete the tag
+        $tag->delete();
+        
+        //  redirect with flash data to tags.index
+        Session::flash('success', 'The tag was removed successfully!');
+        
+        $tags = Tag::orderBy('id')->get();
+        return redirect()->route('tags.index')->withTags($tags);
     }
 }
