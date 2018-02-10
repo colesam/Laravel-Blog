@@ -6,6 +6,8 @@
 
 <div class="row">
     <div class="col-md-6 offset-md-3">
+        <h1>Login</h1>
+        <hr>
         <form action="{{ route('auth.login') }}" method="post">
             <div class="form-group">
                 <label for="email">Email Address</label>
@@ -25,7 +27,7 @@
             {{ Form::token() }}
         </form>
         <div class="row">
-            <div class="col-12"><a href="{{ route('password.reset') }}">Forgot Password</a></div>
+            <div class="col-12"><a href="{{ route('password.reset') }}">Reset Password</a></div>
             <div class="col-12"><a href="{{ route('register.form') }}">Register</a></div>
         </div>
     </div>

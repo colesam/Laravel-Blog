@@ -6,6 +6,8 @@
 
 <div class="row">
     <div class="col-md-6 offset-md-3">
+        <h1>Register</h1>
+        <hr>
         <form action="{{ route('register.request') }}" method="post">
             <div class="form-group">
                 <label for="name">Full Name</label>
