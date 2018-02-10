@@ -2,7 +2,10 @@
 A blog content management system powered by Laravel.
 
 <h3>Extended Description</h3>
-<p>This project is a content management system for blogging using the Laravel PHP framework. I started this project to learn more about Laravel and MVC frameworks.</p> 
+<p>
+  This is a content management system for a blog website that runs on the Laravel PHP framework. 
+  This is a personal project that I started in order to learn more about Laravel and MVC frameworks.
+</p> 
 
 <h4>Current Functionality:</h4>
 <ul>
