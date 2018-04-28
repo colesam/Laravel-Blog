@@ -14,47 +14,47 @@ class TagsSeeder extends Seeder
     {
         //  1
         $tag = new Tag();
-        $category->name = 'Laravel';
-        $category->save();
+        $tag->name = 'Laravel';
+        $tag->save();
         
         //  2
         $tag = new Tag();
-        $category->name = 'PHP';
-        $category->save();
+        $tag->name = 'PHP';
+        $tag->save();
         
         //  3
         $tag = new Tag();
-        $category->name = 'JavaScript';
-        $category->save();
+        $tag->name = 'JavaScript';
+        $tag->save();
 
         //  4
         $tag = new Tag();
-        $category->name = 'NodeJS';
-        $category->save();
+        $tag->name = 'NodeJS';
+        $tag->save();
         
         //  5
         $tag = new Tag();
-        $category->name = 'React';
-        $category->save();
+        $tag->name = 'React';
+        $tag->save();
 
         //  6
         $tag = new Tag();
-        $category->name = 'Angular 2';
-        $category->save();
+        $tag->name = 'Angular 2';
+        $tag->save();
         
         //  7
         $tag = new Tag();
-        $category->name = 'R Studio';
-        $category->save();
+        $tag->name = 'R Studio';
+        $tag->save();
 
         //  8
         $tag = new Tag();
-        $category->name = 'Python';
-        $category->save();
+        $tag->name = 'Python';
+        $tag->save();
         
         //  9
         $tag = new Tag();
-        $category->name = 'Blockchain';
-        $category->save();
+        $tag->name = 'Blockchain';
+        $tag->save();
     }
 }
