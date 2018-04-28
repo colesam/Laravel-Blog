@@ -4,8 +4,8 @@
 
 @section('stylesheets')
 
-    <link href="{{ secure_asset('css/parsley.css') }}" rel="stylesheet">
-    <link href="{{ secure_asset('css/select2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/parsley.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
 
 @endsection
 
@@ -100,8 +100,8 @@
 
 @section('scripts')
     
-    <script src="{{ secure_asset('js/parsley.min.js') }}"></script>
-    <script src="{{ secure_asset('js/select2.min.js') }}"></script>
+    <script src="{{ asset('js/parsley.min.js') }}"></script>
+    <script src="{{ asset('js/select2.min.js') }}"></script>
     
     <!-- script to make select2 form element function -->
     <script>
